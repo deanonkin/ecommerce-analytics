@@ -15,7 +15,7 @@
 
 **Customers — RFM-сегменты и retention**
 
-![Customers1](dashboards/screenshots/dashboard_customer1s.png)
+![Customers1](dashboards/screenshots/dashboard_customers1.png)
 ![Customers2](dashboards/screenshots/dashboard_customers2.png)
 
 **Marketing — CAC, LTV/CAC, ROMI по каналам**
