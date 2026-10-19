@@ -2,15 +2,25 @@
 
 Сквозной аналитический проект на данных маркетплейса Olist (Бразилия, 2016–2018, ~96k доставленных заказов). От сырых CSV до интерактивного дашборда и бизнес-рекомендаций.
 
+**Дашборд:** [ссылка на Preset Cloud]  
 **Стек:** Supabase (PostgreSQL) · SQL · Python (pandas, scikit-learn, statsmodels) · Apache Superset
-**Дашборд:** 
 
-<p align="center">
-  <img src="dashboards/screenshots/dashboard_overview.png" width="32%" alt="Overview" />
-  <img src="dashboards/screenshots/dashboard_customers1.png" width="32%" alt="Customers_1" />
-  <img src="dashboards/screenshots/dashboard_customers2.png" width="32%" alt="Customers_2" />
-  <img src="dashboards/screenshots/dashboard_marketing.png" width="32%" alt="Marketing" />
-</p>
+---
+
+## Дашборд
+
+**Overview — KPI, динамика выручки, категории**
+
+![Overview](dashboards/screenshots/dashboard_overview.png)
+
+**Customers — RFM-сегменты и retention**
+
+![Customers1](dashboards/screenshots/dashboard_customer1s.png)
+![Customers2](dashboards/screenshots/dashboard_customers2.png)
+
+**Marketing — CAC, LTV/CAC, ROMI по каналам**
+
+![Marketing](dashboards/screenshots/dashboard_marketing.png)
 
 ---
 
@@ -18,7 +28,7 @@
 
 - **Данные:** Olist (заказы, клиенты, товары, платежи, отзывы). Маркетинговые расходы — синтетика (в Olist их нет, детали в `src/generate_marketing_data.py`).
 - **Модель данных:** staging → marts (звёздная схема: `fact_orders`, `dim_customers`, `dim_products` + витрины).
-- **Дашборд Superset:** 3 страницы — Overview (KPI, выручка по дням, категории), Customers (RFM, retention), Marketing (CAC, ROMI, LTV/CAC).
+- **Дашборд Superset:** 3 страницы — Overview, Customers, Marketing.
 - **Python-анализ:** когорты, RFM-сегментация, юнит-экономика, линейная регрессия (прогноз), симуляция A/B-теста.
 
 ## Ключевые метрики
@@ -31,20 +41,25 @@ Revenue · AOV · Retention (M1–M12) · RFM · CAC · LTV · LTV/CAC · ROMI �
 
 **Клиенты.** 97% покупают **один раз** — особенность маркетплейса, не баг. Retention M1 = 3–5%, к M6 <1%. **Champions + Loyal (~7% клиентов) дают ~30% выручки** — закон Парето в действии.
 
-<p align="center">
-  <img src="dashboards/screenshots/cohorts.png" width="49%" alt="Retention по когортам" />
-  <img src="dashboards/screenshots/rfm_segments.png" width="49%" alt="RFM-сегменты" />
-</p>
+Retention по когортам:
+
+![Retention по когортам](dashboards/screenshots/cohorts.png)
+
+RFM-сегменты:
+
+![RFM-сегменты](dashboards/screenshots/rfm_segments.png)
 
 **Юнит-экономика** (синтетические расходы). `direct` и `organic_search` — самые эффективные (LTV/CAC > 10). `paid_search` — на границе (LTV/CAC ≈ 3). Убыточных каналов нет.
 
-<p align="center">
-  <img src="dashboards/screenshots/unit_economics.png" width="70%" alt="Юнит-экономика" />
-</p>
+![Юнит-экономика](dashboards/screenshots/unit_economics.png)
 
 **Прогноз.** Линейная регрессия (тренд + сезонность через sin/cos): MAPE ~18%, R² ~0.5. Прогноз на 3 месяца — в `notebooks/05_regression.ipynb`.
 
+![Прогноз выручки](dashboards/screenshots/forecast.png)
+
 **A/B-тест (симуляция).** Промо на «At Risk» (n=5000/группа): 5% → 8%, p < 0.001. **Но при типичных параметрах (AOV=150, маржа 30%, промо=20 BRL) кампания убыточна** (−186k BRL). Статистическая значимость ≠ бизнес-выгода.
+
+![A/B-тест](dashboards/screenshots/ab_test.png)
 
 ## Рекомендации
 
