@@ -2,7 +2,6 @@
 
 Сквозной аналитический проект на данных маркетплейса Olist (Бразилия, 2016–2018, ~96k доставленных заказов). От сырых CSV до интерактивного дашборда и бизнес-рекомендаций.
 
-**Дашборд:** [ссылка на Preset Cloud]  
 **Стек:** Supabase (PostgreSQL) · SQL · Python (pandas, scikit-learn, statsmodels) · Apache Superset
 
 ---
